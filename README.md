@@ -1,141 +1,168 @@
-# Overview 
-This project is a Multilingual FAQ Management System that supports adding, viewing, and managing frequently asked questions (FAQs) in multiple languages. The system uses a MERN (MongoDB, Express, React, Node.js) stack along with Redis for caching to improve performance. It also integrates Google Translate API for automated translations of FAQs.
+<h1>Multilingual FAQ Management System</h1>
 
-# Features
-Multilingual Support: Allows FAQ questions and answers to be stored and retrieved in       multiple languages.
-WYSIWYG Editor: Used to format answers using React Quill.
-Caching: Redis is used to cache FAQ responses to improve performance.
-REST API: Exposes APIs to manage FAQs and retrieve them based on language preferences.
-Google Translate Integration: Automatically translates FAQ content to supported languages.
+<h2>Overview</h2>
+<p>This project is a <strong>Multilingual FAQ Management System</strong> that supports adding, viewing, and managing frequently asked questions (FAQs) in multiple languages.</p>
+<p>The system uses a <em>MERN (MongoDB, Express, React, Node.js)</em> stack along with Redis for caching to improve performance. It also integrates <strong>Google Translate API</strong> for automated translations of FAQs.</p>
 
-# Installation =>
+<h2>Features</h2>
+<ul>
+  <li><strong>Multilingual Support:</strong> Store and retrieve FAQs in multiple languages.</li>
+  <li><strong>WYSIWYG Editor:</strong> Format answers using React Quill.</li>
+  <li><strong>Caching:</strong> Uses Redis to cache FAQ responses for performance optimization.</li>
+  <li><strong>REST API:</strong> Provides endpoints to manage FAQs.</li>
+  <li><strong>Google Translate Integration:</strong> Automatically translates FAQ content.</li>
+</ul>
 
-# Clone the Repository
-First, clone the repository to your local machine: 
-    git clone <repository_url> custom_folder_name
-    cd custom_folder_name
+<h2>Installation</h2>
 
-# Backend Setup
-Node.js
-MongoDB
-Redis
+<h3>Clone the Repository</h3>
+<pre>
+<code>
+git clone &lt;repository_url&gt; custom_folder_name
+cd custom_folder_name
+</code>
+</pre>
 
-# Steps
-1. Install backend dependencies:
-    cd backend
-    npm install
-2. Setup environment variables
-    MONGO_URI=<Your MongoDB URI>
-    PORT = <Your PORT_NUMBER> (Running on PORT = 4000 by default)
-    REDIS_HOST=127.0.0.1
-    REDIS_PORT=6379
-3. Run the backend server
+<h3>Backend Setup</h3>
+<ul>
+  <li>Node.js</li>
+  <li>MongoDB</li>
+  <li>Redis</li>
+</ul>
 
-The backend will be running at http://localhost:4000
+<h3>Steps</h3>
+<pre>
+<code>
+cd backend
+npm install
+</code>
+</pre>
 
-# Frontend Setup
-Node.js
+<h3>Setup Environment Variables</h3>
+<pre>
+<code>
+MONGO_URI= Your_MongoDB_URI
+PORT= Your_PORT_NUMBER (Default: 4000)
+REDIS_HOST=127.0.0.1
+REDIS_PORT=6379
+</code>
+</pre>
 
-# Steps
+<h3>Run the Backend Server</h3>
+<p>The backend will be running at <a href="http://localhost:4000">http://localhost:4000</a></p>
 
-1. Install frontend dependencies
-    cd frontend
-    npm install
+<h3>Frontend Setup</h3>
+<ul>
+  <li>Node.js</li>
+</ul>
 
-2. Start the frontend server
-    npm start
+<h3>Steps</h3>
+<pre>
+<code>
+cd frontend
+npm install
+npm start
+</code>
+</pre>
+<p>The frontend will be running at <a href="http://localhost:3000">http://localhost:3000</a></p>
 
-The frontend will be running at http://localhost:3000
+<h2>API Usage</h2>
 
-# API Usage
+<h3>1. Fetch FAQs by Language</h3>
+<pre>
+<code>
+GET /api/faqs?lang={language}
+Example: GET "http://localhost:4000/api/faqs?lang=en"
+</code>
+</pre>
 
-1. Fetch FAQs by Language => 
-    GET /api/faqs?lang={language}
-    example => GET "http://localhost:4000/api/faqs?lang=en"
-    # Response 
-    [
-        {
-            "question": "What is the system?",
-            "answer": "This is a multilingual FAQ management system."
-        },
-        {
-            "question": "How to use the system?",
-            "answer": "You can add and view FAQs in multiple languages."
-        }   
-    ]
-
-
-2. Add a New FAQ => Translations will be generated dynamically.
-    POST /api/faqs
-    example => POST "http://localhost:4000/api/faqs
-    # Request 
+<h3>Response</h3>
+<pre>
+<code>
+[
     {
-    "question": "What is this system?",
-    "answer": "This system allows managing FAQs in multiple languages."
-    }
-
-    # Response
+        "question": "What is the system?",
+        "answer": "This is a multilingual FAQ management system."
+    },
     {
-    "_id": "12345",
-    "question": "What is the system?",
-    "answer": "This is a multilingual FAQ management system.",
-    "translations": {
-        "question_hi": "यह सिस्टम क्या है?",
-        "question_bn": "এই সিস্টেম কী?",
-        "answer_hi": "यह एक बहुभाषी FAQ प्रबंधन प्रणाली है।",
-        "answer_bn": "এটি একটি বহু ভাষিক FAQ ব্যবস্থাপনা সিস্টেম।",
-        }
+        "question": "How to use the system?",
+        "answer": "You can add and view FAQs in multiple languages."
     }
+]
+</code>
+</pre>
 
-3. # Redis Cache
+<h3>2. Add a New FAQ</h3>
+<pre>
+<code>
+POST /api/faqs
+Example: POST "http://localhost:4000/api/faqs"
+</code>
+</pre>
 
-1. Check Redis Logs
+<h3>Request</h3>
+<pre>
+<code>
+{
+  "question": "What is this system?",
+  "answer": "This system allows managing FAQs in multiple languages."
+}
+</code>
+</pre>
 
-    Run the following command in your terminal: redis-cli monitor
-    This will show live Redis interactions.
+<h3>Response</h3>
+<pre>
+<code>
+{
+  "_id": "12345",
+  "question": "What is the system?",
+  "answer": "This is a multilingual FAQ management system.",
+  "translations": {
+    "question_hi": "यह सिस्टम क्या है?",
+    "question_bn": "এই সিস্টেম কী?",
+    "answer_hi": "यह एक बहुभाषी FAQ प्रबंधन प्रणाली है।",
+    "answer_bn": "এটি একটি বহু ভাষিক FAQ ব্যবস্থাপনা সিস্টেম।"
+  }
+}
+</code>
+</pre>
 
-    If a request is cached, you’ll see: GET faq:lang:en
+<h2>Redis Cache</h2>
 
-    If the cache is missed, and the server queries MongoDB, you'll see a new SET command:
-        SET faq:lang:en "cached data"
+<h3>1. Check Redis Logs</h3>
+<pre>
+<code>
+redis-cli monitor
+</code>
+</pre>
+<p>This will show live Redis interactions.</p>
+<ul>
+  <li>If a request is cached, you’ll see: <code>GET faq:lang:en</code></li>
+  <li>If the cache is missed, and the server queries MongoDB, you'll see a new <code>SET</code> command:</li>
+</ul>
+<pre>
+<code>
+SET faq:lang:en "cached data"
+</code>
+</pre>
 
-2. If you want to clear Redis Cache you can use the following command :-
-        redis-cli FLUSHALL
+<h3>2. Clear Redis Cache</h3>
+<pre>
+<code>
+redis-cli FLUSHALL
+</code>
+</pre>
 
-3. Cache Expiration Time => 3600 seconds (1 hour)
+<h3>3. Cache Expiration Time</h3>
+<p><strong>3600 seconds (1 hour)</strong></p>
 
-# CONTRIBUTION GUIDELINES
+<h2>Contribution Guidelines</h2>
+<ol>
+  <li>Fork the repository.</li>
+  <li>Create a new branch: <code>git checkout -b feature/your-feature-name</code></li>
+  <li>Make changes and commit: <code>git commit -m "Your commit message"</code></li>
+  <li>Push your changes: <code>git push origin feature/your-feature-name</code></li>
+  <li>Open a Pull Request.</li>
+</ol>
 
-1. Fork the repository.
-
-2. Create a new branch for your feature or bug fix: git checkout -b feature/your-feature-name
-
-3. Make changes and commit them: git commit -m "Your commit message"
-
-4. Push your changes: git push origin feature/your-feature-name
-
-5. Open a Pull Request.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<p>🚀 Thank you for contributing!</p>
