@@ -1,9 +1,34 @@
 const Faq = require("../models/Faq");
 const redis = require("redis");
 const axios = require("axios");
+require("dotenv").config();
 
-const client = redis.createClient();
-client.connect();
+// const client = redis.createClient();
+// client.connect();
+
+
+const client = redis.createClient({
+  url: process.env.REDIS_URL,
+});
+client.connect()
+  .then(() => console.log("Connected to Redis"))
+  .catch(err => console.error("Redis connection error:", err));
+
+
+// const client = createClient({
+//   url: process.env.REDIS_URL,
+//   socket: {
+//     tls: true, // Ensure secure connection (Upstash requires TLS)
+//     rejectUnauthorized: false, // Allow self-signed certs (optional)
+//   },
+// });
+
+// client.on('error', (err) => console.error('Redis Error:', err));
+
+// (async () => {
+//   await client.connect();
+//   console.log('Connected to Upstash Redis!');
+// })();
 
 const translateText = async (text, targetLang) => {
   try {
