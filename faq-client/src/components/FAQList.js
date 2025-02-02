@@ -8,7 +8,7 @@ const FAQList = ({ language }) => {
 
   useEffect(() => {
     axios
-      .get(`https://faq-management-bharatfd-2.onrender.com/api/faqs?lang=${language}`)
+      .get(`https://faq-management-bharatfd-5.onrender.com/api/faqs?lang=${language}`)
       .then((res) => setFaqs(res.data))
       .catch((err) => console.error(err));
   }, [language]);

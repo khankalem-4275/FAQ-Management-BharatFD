@@ -11,7 +11,7 @@ const AddFAQ = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://faq-management-bharatfd-2.onrender.com/api/faqs", { question, answer });
+      await axios.post("https://faq-management-bharatfd-5.onrender.com/api/faqs", { question, answer });
       alert("FAQ added successfully!");
       setQuestion("");
       setAnswer("");
