@@ -86,7 +86,8 @@ const addFaq = async (req, res) => {
     const newFaq = new Faq({ question, answer, translations });
     await newFaq.save();
 
-    redis.flushdb().then(() => console.log("Cache cleared"));
+    await client.flushDb();
+    console.log("Cache cleared");
 
     res.status(201).json(newFaq);
   } catch (err) {
